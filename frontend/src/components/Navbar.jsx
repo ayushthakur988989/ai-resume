@@ -8,6 +8,7 @@ function Navbar() {
   const location = useLocation();
   const user = getUser();
   const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'dark');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -17,6 +18,7 @@ function Navbar() {
   };
 
   const logout = () => {
+    setMenuOpen(false);
     removeUser();
     navigate('/');
   };
@@ -27,15 +29,35 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-inner container">
         {/* Logo */}
-        <Link to={user ? '/dashboard' : '/'} className="navbar-logo">
+        <Link
+          to={user ? '/dashboard' : '/'}
+          className="navbar-logo"
+          onClick={() => setMenuOpen(false)}
+        >
           <span className="logo-icon">⚡</span>
           <span className="logo-text">
             AI<span className="logo-accent">Resume</span>
           </span>
         </Link>
 
+        <button
+          type="button"
+          className={`mobile-menu-button ${menuOpen ? 'open' : ''}`}
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
         {/* Nav Links */}
-        <div className="navbar-links">
+        <div
+          id="primary-navigation"
+          className={`navbar-links ${menuOpen ? 'open' : ''}`}
+        >
           <button
             type="button"
             className="theme-toggle"
@@ -51,12 +73,14 @@ function Navbar() {
               <Link
                 to="/dashboard"
                 className={`nav-link ${isActive('/dashboard') ? 'active' : ''}`}
+                onClick={() => setMenuOpen(false)}
               >
                 Dashboard
               </Link>
               <Link
                 to="/resume/new"
                 className={`nav-link ${isActive('/resume/new') ? 'active' : ''}`}
+                onClick={() => setMenuOpen(false)}
               >
                 New Resume
               </Link>
@@ -71,10 +95,15 @@ function Navbar() {
               <Link
                 to="/login"
                 className={`nav-link ${isActive('/login') ? 'active' : ''}`}
+                onClick={() => setMenuOpen(false)}
               >
                 Login
               </Link>
-              <Link to="/signup" className="btn btn-primary btn-sm">
+              <Link
+                to="/signup"
+                className="btn btn-primary btn-sm"
+                onClick={() => setMenuOpen(false)}
+              >
                 Get Started
               </Link>
             </>
