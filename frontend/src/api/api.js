@@ -1,6 +1,6 @@
 const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
 const defaultApiUrl = import.meta.env.PROD
-  ? 'https://ai-resume-api-unl26.onrender.com'
+  ? 'https://ai-resume-api-un26.onrender.com'
   : 'http://localhost:5000';
 
 const apiBaseUrl = (configuredApiUrl || defaultApiUrl).replace(/\/+$/, '');
