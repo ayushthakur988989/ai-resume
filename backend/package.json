@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "engines": {
-    "node": ">=22.12.0"
-  },
-  "scripts": {
-    "dev": "nodemon --exec \"node --use-system-ca\" src/server.js",
-    "start": "node --use-system-ca src/server.js"
-  },
+  "node": "22.x"
+},
+"scripts": {
+  "dev": "nodemon src/server.js",
+  "start": "node src/server.js"
+},
   "description": "Lightweight Node.js API scaffold for the AI Resume Builder.",
   "main": "src/server.js",
   "keywords": [],
