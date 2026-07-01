@@ -1,4 +1,10 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
+const defaultApiUrl = import.meta.env.PROD
+  ? 'https://ai-resume-api-unl26.onrender.com'
+  : 'http://localhost:5000';
+
+const apiBaseUrl = (configuredApiUrl || defaultApiUrl).replace(/\/+$/, '');
+const API_URL = apiBaseUrl.endsWith('/api') ? apiBaseUrl : `${apiBaseUrl}/api`;
 const USER_KEY = 'ai_resume_builder_user';
 const TOKEN_KEY = 'ai_resume_builder_token';
 
