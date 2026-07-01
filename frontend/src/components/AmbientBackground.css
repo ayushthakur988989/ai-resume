@@ -1,0 +1,131 @@
+.ambient-scene {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  perspective: 900px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(34, 120, 60, 0.14), transparent 29%),
+    radial-gradient(circle at 88% 72%, rgba(6, 182, 212, 0.11), transparent 32%),
+    radial-gradient(circle at 55% 104%, rgba(139, 92, 246, 0.08), transparent 36%);
+}
+
+[data-theme='dark'] .ambient-scene {
+  background:
+    radial-gradient(circle at 13% 16%, rgba(124, 58, 237, 0.28), transparent 30%),
+    radial-gradient(circle at 87% 70%, rgba(6, 182, 212, 0.2), transparent 34%),
+    radial-gradient(circle at 52% 105%, rgba(79, 70, 229, 0.2), transparent 40%),
+    linear-gradient(145deg, #030510 0%, #09071c 42%, #04141d 72%, #050510 100%);
+}
+
+[data-theme='dark'] .ambient-mesh {
+  opacity: 0.48;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.13) 1px, transparent 1px);
+}
+
+[data-theme='dark'] .ambient-diamond {
+  border-color: rgba(167, 139, 250, 0.34);
+  box-shadow: inset 0 0 32px rgba(124, 58, 237, 0.08), 0 0 45px rgba(124, 58, 237, 0.12);
+}
+
+[data-theme='dark'] .ambient-diamond-two { border-color: rgba(34, 211, 238, 0.34); }
+[data-theme='dark'] .ambient-face {
+  border-color: rgba(196, 181, 253, 0.4);
+  background: linear-gradient(135deg, rgba(167,139,250,0.18), rgba(34,211,238,0.04));
+}
+
+.ambient-mesh {
+  position: absolute;
+  inset: -15%;
+  opacity: 0.25;
+  transform: perspective(700px) rotateX(64deg) translateY(38%);
+  transform-origin: center bottom;
+  background-image:
+    linear-gradient(rgba(34, 120, 60, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 120, 60, 0.16) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, black 12%, transparent 68%);
+  animation: ambient-mesh-drift 14s ease-in-out infinite alternate;
+}
+
+.ambient-shape { position: absolute; }
+
+.ambient-diamond {
+  width: 115px;
+  height: 115px;
+  border: 2px solid rgba(34, 120, 60, 0.2);
+  border-radius: 18px;
+  box-shadow: inset 0 0 30px rgba(34, 120, 60, 0.05), 0 20px 50px rgba(22, 101, 52, 0.08);
+}
+
+.ambient-diamond-one { left: 4%; top: 25%; animation: ambient-diamond-one 17s linear infinite; }
+.ambient-diamond-two { right: 7%; bottom: 10%; width: 76px; height: 76px; border-color: rgba(6, 182, 212, 0.2); animation: ambient-diamond-two 13s linear infinite; }
+
+.ambient-ring {
+  width: 330px;
+  height: 330px;
+  right: -145px;
+  top: 12%;
+  border-radius: 50%;
+  border: 2px solid rgba(139, 92, 246, 0.1);
+  box-shadow: 0 0 0 32px rgba(139, 92, 246, 0.018), 0 0 0 70px rgba(6, 182, 212, 0.012);
+  animation: ambient-pulse 7s ease-in-out infinite;
+}
+
+.ambient-cube-wrap {
+  position: absolute;
+  width: 74px;
+  height: 74px;
+  right: 9%;
+  top: 19%;
+  perspective: 700px;
+  filter: drop-shadow(0 20px 24px rgba(22, 101, 52, 0.17));
+  animation: ambient-cube-float 8s ease-in-out infinite;
+}
+
+.ambient-cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: ambient-cube-turn 18s linear infinite; }
+.ambient-face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(22, 101, 52, 0.3);
+  background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(34,120,60,0.04));
+  backdrop-filter: blur(3px);
+}
+.ambient-front { transform: rotateY(0deg) translateZ(37px); }
+.ambient-back { transform: rotateY(180deg) translateZ(37px); }
+.ambient-right { transform: rotateY(90deg) translateZ(37px); }
+.ambient-left { transform: rotateY(-90deg) translateZ(37px); }
+.ambient-top { transform: rotateX(90deg) translateZ(37px); }
+.ambient-bottom { transform: rotateX(-90deg) translateZ(37px); }
+
+.ambient-orbital { position: absolute; width: 126px; height: 126px; left: 6%; bottom: 8%; transform-style: preserve-3d; animation: ambient-orbital-float 9s ease-in-out infinite; }
+.ambient-core { position: absolute; width: 18px; height: 18px; left: 54px; top: 54px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, white, #34d399 35%, #166534); box-shadow: 0 0 20px rgba(52, 211, 153, 0.65); }
+.ambient-orbit { position: absolute; inset: 26px 3px; border: 1px solid rgba(5, 150, 105, 0.35); border-radius: 50%; }
+.ambient-orbit::after { content: ''; position: absolute; width: 6px; height: 6px; left: 20px; top: 5px; border-radius: 50%; background: #06b6d4; box-shadow: 0 0 9px #06b6d4; }
+.ambient-orbit-one { --plane: rotateX(0deg); animation: ambient-orbit-spin 7s linear infinite; }
+.ambient-orbit-two { --plane: rotateX(65deg); animation: ambient-orbit-spin 10s linear infinite reverse; }
+.ambient-orbit-three { --plane: rotateY(65deg); animation: ambient-orbit-spin 13s linear infinite; }
+
+@keyframes ambient-cube-turn { from { transform: rotateX(-20deg) rotateY(0deg); } to { transform: rotateX(340deg) rotateY(360deg); } }
+@keyframes ambient-cube-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-22px); } }
+@keyframes ambient-orbit-spin { from { transform: var(--plane) rotateZ(0deg); } to { transform: var(--plane) rotateZ(360deg); } }
+@keyframes ambient-orbital-float { 0%,100% { transform: translateY(0) rotate(-7deg); } 50% { transform: translateY(-18px) rotate(5deg); } }
+@keyframes ambient-diamond-one { from { transform: rotateX(30deg) rotateY(0deg) rotateZ(35deg); } to { transform: rotateX(390deg) rotateY(360deg) rotateZ(35deg); } }
+@keyframes ambient-diamond-two { from { transform: rotateX(10deg) rotateY(0deg) rotateZ(45deg); } to { transform: rotateX(370deg) rotateY(-360deg) rotateZ(45deg); } }
+@keyframes ambient-pulse { 0%,100% { opacity: 0.55; transform: scale(0.96); } 50% { opacity: 1; transform: scale(1.04); } }
+@keyframes ambient-mesh-drift { from { transform: perspective(700px) rotateX(64deg) translateY(36%) translateX(-2%); } to { transform: perspective(700px) rotateX(64deg) translateY(42%) translateX(2%); } }
+
+@media (max-width: 700px) {
+  .ambient-cube-wrap { right: -18px; opacity: 0.55; }
+  .ambient-orbital { left: -45px; opacity: 0.55; }
+  .ambient-diamond-one { left: -55px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-scene * { animation: none !important; }
+}
+
+@media print { .ambient-scene { display: none !important; } }

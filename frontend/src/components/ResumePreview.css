@@ -1,0 +1,140 @@
+/* ===== Resume Preview (printable) ===== */
+.resume-preview {
+  background: #ffffff;
+  color: #1a1a2e;
+  font-family: 'Inter', 'Georgia', serif;
+  padding: 40px 48px;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  min-height: 1000px;
+}
+
+/* Header */
+.rp-header {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #6366f1;
+  margin-bottom: 20px;
+}
+
+.rp-name {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1e1b4b;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.rp-title {
+  font-size: 1rem;
+  color: #6366f1;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.rp-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #475569;
+}
+
+.rp-contact-row a {
+  color: #6366f1;
+  text-decoration: none;
+}
+
+/* Sections */
+.rp-section {
+  margin-bottom: 22px;
+}
+
+.rp-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #6366f1;
+  margin-bottom: 6px;
+}
+
+.rp-divider {
+  height: 1.5px;
+  background: linear-gradient(90deg, #6366f1, transparent);
+  margin-bottom: 12px;
+}
+
+.rp-text {
+  color: #374151;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+/* Items (experience, education, projects) */
+.rp-item {
+  margin-bottom: 14px;
+}
+
+.rp-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.rp-item-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rp-item-subtitle {
+  font-size: 0.85rem;
+  color: #6366f1;
+  font-weight: 500;
+}
+
+.rp-item-date {
+  font-size: 0.78rem;
+  color: #64748b;
+  white-space: nowrap;
+  margin-left: 16px;
+  font-style: italic;
+}
+
+/* Skills */
+.rp-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rp-skill-badge {
+  padding: 3px 12px;
+  background: #ede9fe;
+  color: #4f46e5;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.rp-project-link {
+  color: #6366f1;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+/* Print overrides */
+@media print {
+  .resume-preview {
+    padding: 20px 32px;
+    box-shadow: none;
+  }
+}
