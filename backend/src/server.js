@@ -13,6 +13,14 @@ const allowedOrigins = (process.env.FRONTEND_ORIGIN || 'http://localhost:5173')
   .split(',')
   .map((origin) => origin.trim().replace(/\/$/, ''))
   .filter(Boolean);
+const isAllowedVercelOrigin = (origin) => {
+  try {
+    const { protocol, hostname } = new URL(origin);
+    return protocol === 'https:' && /^ai-resume(?:-[a-z0-9-]+)?\.vercel\.app$/i.test(hostname);
+  } catch {
+    return false;
+  }
+};
 const databaseName = process.env.MONGODB_DB || 'ai-resume';
 const jwtSecret = process.env.JWT_SECRET;
 
@@ -21,7 +29,10 @@ app.disable('x-powered-by');
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin.replace(/\/$/, ''))) return callback(null, true);
+    const normalizedOrigin = origin?.replace(/\/$/, '');
+    if (!origin || allowedOrigins.includes(normalizedOrigin) || isAllowedVercelOrigin(normalizedOrigin)) {
+      return callback(null, true);
+    }
     return callback(new Error('Origin is not allowed by CORS.'));
   },
 }));
