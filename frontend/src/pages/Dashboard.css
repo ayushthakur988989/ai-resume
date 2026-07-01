@@ -201,6 +201,62 @@
 
 /* Responsive */
 @media (max-width: 600px) {
-  .dashboard-header { flex-direction: column; align-items: flex-start; }
-  .dash-stats { grid-template-columns: 1fr; }
+  .dashboard-page {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 32px 16px;
+  }
+
+  .dashboard-header {
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+
+  .dashboard-header > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .dashboard-title {
+    max-width: 100%;
+    font-size: clamp(1.55rem, 7vw, 1.85rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .dashboard-subtitle {
+    max-width: 100%;
+    font-size: 0.88rem;
+  }
+
+  .dash-stats {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .dash-stat,
+  .empty-state,
+  .resume-grid,
+  .resume-card {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .dash-stat {
+    padding: 20px 16px;
+  }
+
+  .empty-state {
+    padding: 52px 20px;
+  }
+
+  .resume-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
